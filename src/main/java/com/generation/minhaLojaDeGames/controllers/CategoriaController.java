@@ -31,14 +31,14 @@ public class CategoriaController {
 		return ResponseEntity.ok(repository.findAll());
 	}
 	
-	@GetMapping("/titulo/{nome_categoria}")
-	public ResponseEntity <List<Categoria>> getByName(@PathVariable String nome_categoria){
-		List <Categoria> nome = repository.findAllByTipoCategoriaContainingIgnoreCase(nome_categoria);
+	@GetMapping("/titulo/{nome}")
+	public ResponseEntity <List<Categoria>> getByName(@PathVariable String nome){
+		List <Categoria> nome_categoria = repository.findAllByNomeContainingIgnoreCase(nome);
 		
-		if (nome.isEmpty()) {
+		if (nome_categoria.isEmpty()) {
 			return ResponseEntity.status(204).build();
 		} else {
-			return ResponseEntity.status(200).body(nome);
+			return ResponseEntity.status(200).body(nome_categoria);
 		}
 	}
 	
