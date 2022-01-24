@@ -25,9 +25,11 @@ public class Jogo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
+	
+
 	@NotNull
 	@Size(max = 1000)
-	private String nome_jogo;
+	private String nome;
 
 	@NotNull
 	@Size(max = 1000)
@@ -52,12 +54,12 @@ public class Jogo {
 		this.id = id;
 	}
 
-	public String getNome_jogo() {
-		return nome_jogo;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNome_jogo(String nome_jogo) {
-		this.nome_jogo = nome_jogo;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getDescricao() {

@@ -11,7 +11,7 @@ import com.generation.minhaLojaDeGames.models.Jogo;
 @Repository
 public interface JogoRepository extends JpaRepository<Jogo, Long> {
 	
-	public List<Jogo> findAllByJogoContainingIgnoreCase (String jogo);
+	public List<Jogo> findAllByNomeContainingIgnoreCase (String nome);
 	
 	public List<Jogo> findAll();
 }

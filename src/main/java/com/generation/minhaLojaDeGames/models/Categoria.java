@@ -24,11 +24,19 @@ public class Categoria {
 
 	@NotNull
 	@Size(max = 100)
-	private String nome_categoria;
+	private String nome; 
 
 	@OneToMany(mappedBy = "categoria", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("categoria")
 	private List<Jogo> jogo;
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
 	public long getId() {
 		return id;
@@ -38,13 +46,7 @@ public class Categoria {
 		this.id = id;
 	}
 
-	public String getNome_categoria() {
-		return nome_categoria;
-	}
-
-	public void setNome_categoria(String nome_categoria) {
-		this.nome_categoria = nome_categoria;
-	}
+	
 
 	public List<Jogo> getJogo() {
 		return jogo;

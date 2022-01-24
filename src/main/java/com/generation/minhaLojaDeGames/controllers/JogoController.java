@@ -37,14 +37,14 @@ public class JogoController {
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	}
 	
-	@GetMapping("/titulo/{nome_jogo}")
-	public ResponseEntity<List<Jogo>> getByName(@PathVariable String nome_jogo){
-		List<Jogo> nome = repository.findAllByJogoContainingIgnoreCase(nome_jogo);
+	@GetMapping("/titulo/{nome}")
+	public ResponseEntity<List<Jogo>> getByName(@PathVariable String nome){
+		List<Jogo> nome_jogo = repository.findAllByNomeContainingIgnoreCase(nome);
 		
-		if(nome.isEmpty()) {
+		if(nome_jogo.isEmpty()) {
 			return ResponseEntity.status(204).build();
 		}else {
-			return ResponseEntity.status(200).body(nome);
+			return ResponseEntity.status(200).body(nome_jogo);
 		}
 	}
 	
