@@ -25,8 +25,6 @@ public class Jogo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	
-
 	@NotNull
 	@Size(max = 1000)
 	private String nome;
@@ -43,8 +41,12 @@ public class Jogo {
 	@ManyToOne
 	@JoinColumn(name = "fk_categoria")
 	@JsonIgnoreProperties("categoria")
-
 	private Categoria categoria;
+	
+	@ManyToOne
+	@JoinColumn(name = "fk_usuario")
+	@JsonIgnoreProperties("usuario")
+	private Usuario usuario;
 
 	public long getId() {
 		return id;
@@ -84,6 +86,14 @@ public class Jogo {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }
