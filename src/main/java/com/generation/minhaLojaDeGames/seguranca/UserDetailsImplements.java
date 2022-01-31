@@ -2,6 +2,12 @@ package com.generation.minhaLojaDeGames.seguranca;
 
 import java.util.Collection;
 
+
+/*
+ * @Author Igor Miramisawa
+ * 
+ */
+
 import com.generation.minhaLojaDeGames.models.Usuario;
 
 import org.springframework.security.core.GrantedAuthority;
