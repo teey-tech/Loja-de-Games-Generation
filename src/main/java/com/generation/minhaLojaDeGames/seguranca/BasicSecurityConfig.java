@@ -7,24 +7,35 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
-public class BasicSecurityConfig extends WebSecurityConfigurerAdapter{
-    
+public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Autowired
-    private void configure(AuthenticationManagerBuilder auth) throws Exception{
+    private UserDetailsService userDetailsService;
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService);
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception{
-        http.authorizeHttpRequests().antMatchers("/usuarios/logar").permitAll().antMatchers("/usuarios/cadastrar").permitAll().anyRequest().authenticated().and().httpBasic().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().cors().and().csrf().disable();
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests()
+                .antMatchers("/usuarios/logar").permitAll()
+                .antMatchers("/usuarios/cadastrar").permitAll()
+                .anyRequest().authenticated()
+                .and().httpBasic()
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().cors()
+                .and().csrf().disable();
     }
 }

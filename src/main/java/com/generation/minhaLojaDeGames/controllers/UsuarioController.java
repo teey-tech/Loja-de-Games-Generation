@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.generation.minhaLojaDeGames.models.Usuario;
 import com.generation.minhaLojaDeGames.models.UsuarioLogin;
 import com.generation.minhaLojaDeGames.repositories.UsuarioRepository;
+import com.generation.minhaLojaDeGames.service.UsuarioService;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -52,7 +53,7 @@ public class UsuarioController {
 	public ResponseEntity<Usuario> Post(@RequestBody Usuario usuario) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.CadastrarUsuario(usuario));
 	}
-	
+
 	@PutMapping("/put")
 	public ResponseEntity<Usuario> put(@RequestBody Usuario usuario) {
 		return ResponseEntity.status(HttpStatus.OK).body(repository.save(usuario));
