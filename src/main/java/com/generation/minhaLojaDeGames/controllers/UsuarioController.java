@@ -52,5 +52,22 @@ public class UsuarioController {
 	public ResponseEntity<Usuario> Post(@RequestBody Usuario usuario) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.CadastrarUsuario(usuario));
 	}
+	
+	@PutMapping("/put")
+	public ResponseEntity<Usuario> put(@RequestBody Usuario usuario) {
+		return ResponseEntity.status(HttpStatus.OK).body(repository.save(usuario));
+	}
+
+	@SuppressWarnings("rawtypes")
+	@DeleteMapping(value = "/delete/{id}")
+	public ResponseEntity deletePost(@PathVariable("id") long id) {
+		Optional<Usuario> optional = repository.findById(id);
+		if (optional.isPresent()) {
+			repository.deleteById(id);
+			return ResponseEntity.status(200).build();
+		} else {
+			return ResponseEntity.status(404).build();
+		}
+	}
 
 }
