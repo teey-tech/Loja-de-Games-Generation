@@ -40,12 +40,12 @@ public class Jogo {
 
 	@ManyToOne
 	@JoinColumn(name = "fk_categoria")
-	@JsonIgnoreProperties("categoria")
+	@JsonIgnoreProperties("jogo")
 	private Categoria categoria;
 	
 	@ManyToOne
 	@JoinColumn(name = "fk_usuario")
-	@JsonIgnoreProperties("usuario")
+	@JsonIgnoreProperties("jogo")
 	private Usuario usuario;
 
 	public long getId() {
